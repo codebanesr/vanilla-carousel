@@ -3,6 +3,7 @@ import CardWrapper from "./card-wrapper";
 import SliderList from "./slider-list";
 import SliderTrack from "./slider-track";
 import SliderWrapper from './slider-wrapper';
+import PropTypes from 'prop-types';
 
 class Slider extends Component {
   constructor(props) {
@@ -134,5 +135,39 @@ class Slider extends Component {
   }
 
 }
+
+
+/** @Todo configure this */
+Slider.defaultProps = {};
+
+Slider.propTypes = {
+  LeftArrow: PropTypes.node,
+  RightArrow: PropTypes.node,
+  Dot: PropTypes.node,
+  showArrows: PropTypes.bool,
+  showDots: PropTypes.bool,
+  children: PropTypes.node.isRequired,
+  cardsToShow: PropTypes.number,
+  afterSlide: PropTypes.func,
+  beforeSlide: PropTypes.func,
+  infinite: PropTypes.bool,
+  responsive: PropTypes.arrayOf(PropTypes.shape({
+    breakPoint: PropTypes.number,
+    cardsToShow: PropTypes.number,
+  })),
+  autoSlide: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.bool,
+  ]),
+  pauseOnMouseOver: PropTypes.bool,
+  padding: PropTypes.string,
+  margin: PropTypes.string,
+  hideArrowsOnNoSlides: PropTypes.bool,
+  DotsWrapper: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+};
+
 
 export default Slider;
