@@ -9,6 +9,12 @@ class Slider extends Component {
   constructor(props) {
     super(props);
     this.updateResponsiveView = this.updateResponsiveView.bind(this);
+    this.state = {
+      initialCard: 0,
+      childWidth: 0,
+      cardsToShow: 0,
+      hideArrows: false,
+    };
   }
 
   componentDidMount() {
