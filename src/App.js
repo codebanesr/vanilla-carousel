@@ -1,9 +1,12 @@
 import Container from "./components/Container";
+import Card from "./components/Card";
 
 function App() {
   return (
     <Container>
-      Container works
+      <Card>
+        This is a sample card
+      </Card>
     </Container>
   );
 }
