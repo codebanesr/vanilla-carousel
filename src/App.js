@@ -14,7 +14,7 @@ function App() {
   return (
     <Container>
       <h1>Carousel 1st trial</h1>
-      <Slider responsive={responsive}>
+      <Slider responsive={responsive} showDots={true}>
         <Card>1</Card>
         <Card>2</Card>
         <Card>3</Card>

@@ -8,7 +8,15 @@ import PropTypes from 'prop-types';
 class Slider extends Component {
   constructor(props) {
     super(props);
+    this.renderChildren = this.renderChildren.bind(this);
+    this.handleLeftArrowClick = this.handleLeftArrowClick.bind(this);
+    this.handleRightArrowClick = this.handleRightArrowClick.bind(this);
+    this.changeInitialCard = this.changeInitialCard.bind(this);
+    this.renderDots = this.renderDots.bind(this);
+    this.renderLeftArrow = this.renderLeftArrow.bind(this);
+    this.renderRightArrow = this.renderRightArrow.bind(this);
     this.updateResponsiveView = this.updateResponsiveView.bind(this);
+    
     this.state = {
       initialCard: 0,
       childWidth: 0,
@@ -46,6 +54,22 @@ class Slider extends Component {
     }
   }
 
+
+  changeInitialCard(initialCard) {
+    const { afterSlide, beforeSlide } = this.props;
+    if (beforeSlide) {
+      beforeSlide();
+    }
+    this.setState({
+      initialCard,
+    }, () => {
+      if (afterSlide) {
+        afterSlide();
+      }
+    });
+  }
+
+
   updateResponsiveView() {
     const { children, hideArrowsOnNoSlides } = this.props;
 
@@ -70,6 +94,30 @@ class Slider extends Component {
       ));
     });
     return displayCards;
+  }
+
+  handleLeftArrowClick(evt) {
+    const { children } = this.props;
+    const { cardsToShow } = this.state;
+    const childrenCount = children ? children.length : 0;
+    if (evt && evt.preventDefault) { evt.preventDefault(); }
+    let nextInitialCard = this.state.initialCard - 1;
+    if (nextInitialCard < 0) {
+      nextInitialCard = childrenCount - cardsToShow;
+    }
+    this.changeInitialCard(nextInitialCard);
+  }
+
+  handleRightArrowClick(evt) {
+    const { children } = this.props;
+    const { cardsToShow } = this.state;
+    const childrenCount = children ? children.length : 0;
+    if (evt && evt.preventDefault) { evt.preventDefault(); }
+    let nextInitialCard = this.state.initialCard + 1;
+    if (childrenCount - cardsToShow < nextInitialCard) {
+      nextInitialCard = 0;
+    }
+    this.changeInitialCard(nextInitialCard);
   }
 
 
@@ -116,9 +164,9 @@ class Slider extends Component {
         </SliderTrack>
         {showArrows && !this.state.hideArrows && this.renderRightArrow()}
       </SliderWrapper>
-      <DotsWrapper>
+      {/* <DotsWrapper>
         {showDots && this.renderDots()}
-      </DotsWrapper>
+      </DotsWrapper> */}
     </div>
   }
 
