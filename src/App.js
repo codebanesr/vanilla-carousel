@@ -1,6 +1,6 @@
 import Container from "./components/Container";
 import Card from "./components/Card";
-import Slider from "./components/slider";
+import Carousel from "./components/carousel";
 
 
 
@@ -14,14 +14,14 @@ function App() {
   return (
     <Container>
       <h1>Carousel 1st trial</h1>
-      <Slider responsive={responsive} showDots={true}>
+      <Carousel responsive={responsive} showDots={true} showArrows={true} cardsToShow={3}>
         <Card>1</Card>
         <Card>2</Card>
         <Card>3</Card>
         <Card>4</Card>
         <Card>5</Card>
         <Card>6</Card>
-      </Slider>
+      </Carousel>
     </Container>
   );
 }

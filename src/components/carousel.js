@@ -1,11 +1,15 @@
 import { Component, cloneElement, Children } from "react";
 import CardWrapper from "./card-wrapper";
-import SliderList from "./slider-list";
-import SliderTrack from "./slider-track";
-import SliderWrapper from './slider-wrapper';
+import List from "./slider-list";
+import Track from "./slider-track";
+import Wrapper from './slider-wrapper';
 import PropTypes from 'prop-types';
+import LeftArrow from "./left-arrow";
+import RightArrow from "./right-arrow";
+import Dot from "./dot";
+import DotsWrapper from "./dots-wrapper";
 
-class Slider extends Component {
+class Carousel extends Component {
   constructor(props) {
     super(props);
     this.renderChildren = this.renderChildren.bind(this);
@@ -155,15 +159,15 @@ class Slider extends Component {
       onMouseLeave={() => pauseOnMouseOver && this.autoSlider && this.autoSlider.resume()}
       onMouseEnter={() => pauseOnMouseOver && this.autoSlider && this.autoSlider.pause()}
     >
-      <SliderWrapper {...otherProps}>
+      <Wrapper {...otherProps}>
         {showArrows && !this.state.hideArrows && this.renderLeftArrow()}
-        <SliderTrack>
-          <SliderList translateX={initialCard * childWidth}>
+        <Track>
+          <List translateX={initialCard * childWidth}>
             {this.renderChildren(children, cardsToShow || children.length)}
-          </SliderList>
-        </SliderTrack>
+          </List>
+        </Track>
         {showArrows && !this.state.hideArrows && this.renderRightArrow()}
-      </SliderWrapper>
+      </Wrapper>
       {/* <DotsWrapper>
         {showDots && this.renderDots()}
       </DotsWrapper> */}
@@ -192,9 +196,27 @@ class Slider extends Component {
 
 
 /** @Todo configure this */
-Slider.defaultProps = {};
+Carousel.defaultProps = {
+  showDots: true,
+  showArrows: true,
+  LeftArrow: <LeftArrow />,
+  RightArrow: <RightArrow />,
+  Dot: <Dot />,
+  DotsWrapper: <DotsWrapper />,
+  cardsToShow: null,
+  afterSlide: null,
+  beforeSlide: null,
+  infinite: true,
+  responsive: null,
+  autoSlide: 2000,
+  pauseOnMouseOver: true,
+  padding: '0px 20px',
+  margin: '0px',
+  hideArrowsOnNoSlides: true,
+};
 
-Slider.propTypes = {
+
+Carousel.propTypes = {
   LeftArrow: PropTypes.node,
   RightArrow: PropTypes.node,
   Dot: PropTypes.node,
@@ -224,4 +246,4 @@ Slider.propTypes = {
 };
 
 
-export default Slider;
+export default Carousel;
