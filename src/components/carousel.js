@@ -87,6 +87,7 @@ class Carousel extends Component {
     }
   }
 
+
   renderChildren(children) {
     const { childWidth } = this.state;
     const displayCards = [];
