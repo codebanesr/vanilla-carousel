@@ -15,12 +15,12 @@ function App() {
     <Container>
       <h1>Carousel 1st trial</h1>
       <Carousel responsive={responsive} showDots={true} showArrows={true} cardsToShow={3}>
-        <Card>1</Card>
-        <Card>2</Card>
-        <Card>3</Card>
-        <Card>4</Card>
-        <Card>5</Card>
-        <Card>6</Card>
+        <Card>Shanur</Card>
+        <Card>Rahman</Card>
+        <Card>Mandeep</Card>
+        <Card>Manish</Card>
+        <Card>Jha</Card>
+        <Card>Ankul</Card>
       </Carousel>
     </Container>
   );
