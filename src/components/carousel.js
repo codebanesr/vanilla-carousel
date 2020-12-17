@@ -92,7 +92,7 @@ class Carousel extends Component {
     const displayCards = [];
     Children.forEach(children, (child, index) => {
       displayCards.push((
-        <CardWrapper key={index} width={childWidth}>
+        <CardWrapper key={index} width={childWidth} style={{transitionDuration:'1s', transform: index===this.state.initialCard+1? 'scale(1.11)': 'scale(1)'}}>
           {child}
         </CardWrapper>
       ));
