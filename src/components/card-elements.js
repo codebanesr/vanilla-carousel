@@ -18,6 +18,8 @@ export const CardContent = styled.div`
   display: flex;
   flex-direction: column;
   padding: 25px;
+  height:200px;
+  max-height: 200px;
 `;
 
 
