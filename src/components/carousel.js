@@ -12,14 +12,6 @@ import DotsWrapper from "./dots-wrapper";
 class Carousel extends Component {
   constructor(props) {
     super(props);
-    // this.renderChildren = this.renderChildren.bind(this);
-    // this.handleLeftArrowClick = this.handleLeftArrowClick.bind(this);
-    // this.handleRightArrowClick = this.handleRightArrowClick.bind(this);
-    // this.changeInitialCard = this.changeInitialCard.bind(this);
-    // this.renderDots = this.renderDots.bind(this);
-    // this.renderLeftArrow = this.renderLeftArrow.bind(this);
-    // this.renderRightArrow = this.renderRightArrow.bind(this);
-    // this.updateResponsiveView = this.updateResponsiveView.bind(this);
     
     this.state = {
       initialCard: 0,

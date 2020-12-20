@@ -2,7 +2,7 @@ import AppContainer from "./components/Container";
 import Card from "./components/Card";
 import Carousel from "./components/carousel";
 import { storeProducts } from "./store/products";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {Select} from "react-slct";
 import {options, responsive} from './utils/constants';
 
