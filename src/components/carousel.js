@@ -8,6 +8,7 @@ import LeftArrow from "./left-arrow";
 import RightArrow from "./right-arrow";
 import Dot from "./dot";
 import DotsWrapper from "./dots-wrapper";
+import React from "react";
 
 class Carousel extends Component {
   constructor(props) {
