@@ -11,6 +11,7 @@ const App =() => {
   const [filteredProducts, setFilteredProducts] = useState(storeProducts);
 
   const search = (search) => {
+    console.log(search);
     setSelectedValue(search);
     setFilteredProducts(storeProducts.filter(p=>{
       return p.category.indexOf(search.value) > -1;
@@ -19,7 +20,9 @@ const App =() => {
 
   return (
     <AppContainer>
-      <Select placeholder="Select filter" value={selectedValue} searchable onChange={search} options={options} />
+      <div style={{width: '200px', margin: '0 auto'}}>
+        <Select placeholder="Select filter" value={selectedValue} searchable onChange={search} options={options} />
+      </div>
       <Carousel responsive={responsive} showArrows={true} cardsToShow={3}>
         {
           filteredProducts.map((p, index)=>{

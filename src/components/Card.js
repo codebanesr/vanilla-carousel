@@ -1,4 +1,4 @@
-import { CardContainer, CardImage, CardTitle, CardDescription, CardContent } from "./card-elements";
+import {CardFooter, CardImage, CardTitle, CardDescription, CardContent, CardContainer } from "./card-elements";
 
 // const Card = styled.h1`
 //   background: #00558B;
@@ -18,7 +18,10 @@ const Card = ({ card }) => (
     {card.image && <CardImage type={card.type} img={card.image} />}
     <CardContent>
       <CardTitle>{card.title}</CardTitle>
-      <CardDescription>{card.description} | ${card.price} | {card.category}</CardDescription>
+      <CardDescription>{card.description}</CardDescription>
+      <CardFooter>
+        ${card.price} | {card.category}
+      </CardFooter>
     </CardContent>
   </CardContainer>
 );

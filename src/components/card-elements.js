@@ -39,6 +39,13 @@ export const CardDescription = styled.span`
   font-size: 12px;
   letter-spacing: 0;
   line-height: 18px;
+  max-height: 250px;
+  overflow-y: hidden;
+`;
+
+export const CardFooter = styled.p`
+    padding-bottom: 20px;
+    text-transform: capitalize;
 `;
 
 

@@ -12,14 +12,14 @@ import DotsWrapper from "./dots-wrapper";
 class Carousel extends Component {
   constructor(props) {
     super(props);
-    this.renderChildren = this.renderChildren.bind(this);
-    this.handleLeftArrowClick = this.handleLeftArrowClick.bind(this);
-    this.handleRightArrowClick = this.handleRightArrowClick.bind(this);
-    this.changeInitialCard = this.changeInitialCard.bind(this);
-    this.renderDots = this.renderDots.bind(this);
-    this.renderLeftArrow = this.renderLeftArrow.bind(this);
-    this.renderRightArrow = this.renderRightArrow.bind(this);
-    this.updateResponsiveView = this.updateResponsiveView.bind(this);
+    // this.renderChildren = this.renderChildren.bind(this);
+    // this.handleLeftArrowClick = this.handleLeftArrowClick.bind(this);
+    // this.handleRightArrowClick = this.handleRightArrowClick.bind(this);
+    // this.changeInitialCard = this.changeInitialCard.bind(this);
+    // this.renderDots = this.renderDots.bind(this);
+    // this.renderLeftArrow = this.renderLeftArrow.bind(this);
+    // this.renderRightArrow = this.renderRightArrow.bind(this);
+    // this.updateResponsiveView = this.updateResponsiveView.bind(this);
     
     this.state = {
       initialCard: 0,
@@ -74,21 +74,31 @@ class Carousel extends Component {
   }
 
 
-  updateResponsiveView() {
+  updateResponsiveView = () => {
     const { children, hideArrowsOnNoSlides } = this.props;
-
-    //   breakpoints capture
     let { responsive } = this.props;
-
     const numberOfChildren = children ? children.length || 1 : 0;
-
     if (responsive) {
-      //   apply responsiveness here using the breakpoints
+      responsive = responsive.map(obj => Object.assign({}, obj)).sort((key => (a, b) =>
+        (a[key] > b[key]) ? 1 : ((b[key] > a[key]) ? -1 : 0))('breakPoint')); // eslint-disable-line
+      let updatedCardsToShow = this.state.cardsToShow;
+      responsive.forEach(({ breakPoint, cardsToShow }) => {
+        if (breakPoint <= window.innerWidth) {
+          updatedCardsToShow = cardsToShow;
+        }
+      });
+      const updatedInitialCard = (numberOfChildren - updatedCardsToShow) < this.state.initialCard ? (numberOfChildren - updatedCardsToShow) : this.state.initialCard;
+      this.setState({
+        cardsToShow: updatedCardsToShow,
+        childWidth: 100 / updatedCardsToShow,
+        initialCard: updatedInitialCard,
+        hideArrows: hideArrowsOnNoSlides && numberOfChildren <= updatedCardsToShow,
+      });
     }
   }
 
 
-  renderChildren(children) {
+  renderChildren = (children) => {
     const { childWidth } = this.state;
     const displayCards = [];
     Children.forEach(children, (child, index) => {
@@ -101,7 +111,7 @@ class Carousel extends Component {
     return displayCards;
   }
 
-  handleLeftArrowClick(evt) {
+  handleLeftArrowClick = (evt) => {
     const { children } = this.props;
     const { cardsToShow } = this.state;
     const childrenCount = children ? children.length : 0;
@@ -113,7 +123,7 @@ class Carousel extends Component {
     this.changeInitialCard(nextInitialCard);
   }
 
-  handleRightArrowClick(evt) {
+  handleRightArrowClick = (evt) => {
     const { children } = this.props;
     const { cardsToShow } = this.state;
     const childrenCount = children ? children.length : 0;
@@ -126,7 +136,7 @@ class Carousel extends Component {
   }
 
 
-  renderLeftArrow() {
+  renderLeftArrow = () => {
     const { LeftArrow, infinite } = this.props;
     const { initialCard } = this.state;
     return cloneElement(LeftArrow, {
@@ -135,7 +145,7 @@ class Carousel extends Component {
     });
   }
 
-  renderRightArrow() {
+  renderRightArrow = () => {
     const { RightArrow, children, infinite } = this.props;
     const numberOfChildren = children ? children.length || 1 : 0;
     const { initialCard, cardsToShow } = this.state;
@@ -175,7 +185,7 @@ class Carousel extends Component {
     </div>
   }
 
-  renderDots() {
+  renderDots = () => {
     const dots = [];
     const { children, Dot } = this.props;
     const numberOfChildren = children ? children.length || 1 : 0;
