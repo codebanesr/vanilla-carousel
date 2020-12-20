@@ -20,9 +20,9 @@ const App =() => {
   return (
     <AppContainer>
       <div style={{width: '200px', margin: '0 auto'}}>
-        <Select placeholder="Select filter" value={selectedValue} searchable onChange={search} options={options} />
+        <Select placeholder="Select filter" value={selectedValue} searchable onChange={search} options={options} showDots={true} />
       </div>
-      <Carousel responsive={responsive} showArrows={true} cardsToShow={3}>
+      <Carousel responsive={responsive} showArrows={true} cardsToShow={3} showDots={true}>
         {
           filteredProducts.map((p, index)=>{
             return <Card

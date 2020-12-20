@@ -7,20 +7,11 @@ import PropTypes from 'prop-types';
 import LeftArrow from "./left-arrow";
 import RightArrow from "./right-arrow";
 import Dot from "./dot";
-import DotsWrapper from "./dots-wrapper";
+import DefaultDotsWrapper from "./dots-wrapper";
 
 class Carousel extends Component {
   constructor(props) {
     super(props);
-    // this.renderChildren = this.renderChildren.bind(this);
-    // this.handleLeftArrowClick = this.handleLeftArrowClick.bind(this);
-    // this.handleRightArrowClick = this.handleRightArrowClick.bind(this);
-    // this.changeInitialCard = this.changeInitialCard.bind(this);
-    // this.renderDots = this.renderDots.bind(this);
-    // this.renderLeftArrow = this.renderLeftArrow.bind(this);
-    // this.renderRightArrow = this.renderRightArrow.bind(this);
-    // this.updateResponsiveView = this.updateResponsiveView.bind(this);
-    
     this.state = {
       initialCard: 0,
       childWidth: 0,
@@ -169,7 +160,7 @@ class Carousel extends Component {
       return <div
       onMouseLeave={() => pauseOnMouseOver && this.autoSlider && this.autoSlider.resume()}
       onMouseEnter={() => pauseOnMouseOver && this.autoSlider && this.autoSlider.pause()}
-    >
+      >
       <Wrapper {...otherProps}>
         {showArrows && !this.state.hideArrows && this.renderLeftArrow()}
         <Track>
@@ -213,7 +204,7 @@ Carousel.defaultProps = {
   LeftArrow: <LeftArrow />,
   RightArrow: <RightArrow />,
   Dot: <Dot />,
-  DotsWrapper: <DotsWrapper />,
+  DotsWrapper: <DefaultDotsWrapper />,
   cardsToShow: null,
   afterSlide: null,
   beforeSlide: null,
