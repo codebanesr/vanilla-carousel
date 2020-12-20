@@ -1,3 +1,4 @@
+import React from "react";
 import AppContainer from "./components/Container";
 import Card from "./components/Card";
 import Carousel from "./components/carousel";
