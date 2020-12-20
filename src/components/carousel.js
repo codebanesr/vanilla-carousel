@@ -8,7 +8,6 @@ import LeftArrow from "./left-arrow";
 import RightArrow from "./right-arrow";
 import Dot from "./dot";
 import DotsWrapper from "./dots-wrapper";
-import React from "react";
 
 class Carousel extends Component {
   constructor(props) {
@@ -104,6 +103,7 @@ class Carousel extends Component {
     return displayCards;
   }
 
+
   handleLeftArrowClick = (evt) => {
     const { children } = this.props;
     const { cardsToShow } = this.state;
@@ -162,7 +162,7 @@ class Carousel extends Component {
       return <div
       onMouseLeave={() => pauseOnMouseOver && this.autoSlider && this.autoSlider.resume()}
       onMouseEnter={() => pauseOnMouseOver && this.autoSlider && this.autoSlider.pause()}
-    >
+      >
       <Wrapper {...otherProps}>
         {showArrows && !this.state.hideArrows && this.renderLeftArrow()}
         <Track>

@@ -2,7 +2,12 @@
 ### Paypal assignment
 
 #### Uses Styled Components
-you can provide your own implementation of components like the dot component or the arrow component
+you can provide your own implementation of components like the dot component or the arrow component.
+
+
+##### This code was first written in class components and later changed to use functional components.
+Carousel.js -> class based implementation
+functionel-carousel.js -> classless implementation
 
 Here is a lit of all arguments that the slider component takes, not all are functional. Planning to add all of them some day
 ```ts
