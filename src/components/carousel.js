@@ -59,7 +59,7 @@ class Carousel extends Component {
   }
 
 
-  changeInitialCard(initialCard) {
+  changeInitialCard = (initialCard) => {
     const { afterSlide, beforeSlide } = this.props;
     if (beforeSlide) {
       beforeSlide();
