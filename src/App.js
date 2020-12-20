@@ -11,7 +11,6 @@ const App =() => {
   const [filteredProducts, setFilteredProducts] = useState(storeProducts);
 
   const search = (search) => {
-    console.log(search);
     setSelectedValue(search);
     setFilteredProducts(storeProducts.filter(p=>{
       return p.category.indexOf(search.value) > -1;
