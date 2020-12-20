@@ -19,11 +19,7 @@ const App =() => {
 
   return (
     <AppContainer>
-      <Select placeholder="Please select..." 
-          value={selectedValue} 
-          searchable
-          onChange={search}
-          options={options} />
+      <Select placeholder="Select filter" value={selectedValue} searchable onChange={search} options={options} />
       <Carousel responsive={responsive} showArrows={true} cardsToShow={3}>
         {
           filteredProducts.map((p, index)=>{
