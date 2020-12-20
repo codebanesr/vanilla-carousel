@@ -38,3 +38,10 @@ Used styled components + mix of functional and class based components
 
 ### Dependencies:
 "styled-components": "^5.2.1"
+
+
+### Help
+Refer: Create-react-app
+
+### Note:
+If you find something in code that enrages you, just know that I am an angular guy
