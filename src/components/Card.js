@@ -18,7 +18,7 @@ const Card = ({ card }) => (
     {card.image && <CardImage type={card.type} img={card.image} />}
     <CardContent>
       <CardTitle>{card.title}</CardTitle>
-      <CardDescription>{card.description}</CardDescription>
+      <CardDescription>{card.description} | ${card.price} | {card.category}</CardDescription>
     </CardContent>
   </CardContainer>
 );
