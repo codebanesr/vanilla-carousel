@@ -12,12 +12,12 @@ import DefaultDotsWrapper from "./dots-wrapper";
 class Carousel extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      initialCard: 0,
-      childWidth: 0,
-      cardsToShow: 0,
-      hideArrows: false,
-    };
+    // this.state = {
+    //   initialCard: 0,
+    //   childWidth: 0,
+    //   cardsToShow: 0,
+    //   hideArrows: false,
+    // };
   }
 
   componentDidMount() {
@@ -50,101 +50,102 @@ class Carousel extends Component {
   }
 
 
-  changeInitialCard = (initialCard) => {
-    const { afterSlide, beforeSlide } = this.props;
-    if (beforeSlide) {
-      beforeSlide();
-    }
-    this.setState({
-      initialCard,
-    }, () => {
-      if (afterSlide) {
-        afterSlide();
-      }
-    });
-  }
+  // changeInitialCard = (initialCard) => {
+  //   const { afterSlide, beforeSlide } = this.props;
+  //   if (beforeSlide) {
+  //     beforeSlide();
+  //   }
+  //   this.setState({
+  //     initialCard,
+  //   }, () => {
+  //     if (afterSlide) {
+  //       afterSlide();
+  //     }
+  //   });
+  // }
 
 
-  updateResponsiveView = () => {
-    const { children, hideArrowsOnNoSlides } = this.props;
-    let { responsive } = this.props;
-    const numberOfChildren = children ? children.length || 1 : 0;
-    if (responsive) {
-      responsive = responsive.map(obj => Object.assign({}, obj)).sort((key => (a, b) =>
-        (a[key] > b[key]) ? 1 : ((b[key] > a[key]) ? -1 : 0))('breakPoint')); // eslint-disable-line
-      let updatedCardsToShow = this.state.cardsToShow;
-      responsive.forEach(({ breakPoint, cardsToShow }) => {
-        if (breakPoint <= window.innerWidth) {
-          updatedCardsToShow = cardsToShow;
-        }
-      });
-      const updatedInitialCard = (numberOfChildren - updatedCardsToShow) < this.state.initialCard ? (numberOfChildren - updatedCardsToShow) : this.state.initialCard;
-      this.setState({
-        cardsToShow: updatedCardsToShow,
-        childWidth: 100 / updatedCardsToShow,
-        initialCard: updatedInitialCard,
-        hideArrows: hideArrowsOnNoSlides && numberOfChildren <= updatedCardsToShow,
-      });
-    }
-  }
+  // updateResponsiveView = () => {
+  //   const { children, hideArrowsOnNoSlides } = this.props;
+  //   let { responsive } = this.props;
+  //   const numberOfChildren = children ? children.length || 1 : 0;
+  //   if (responsive) {
+  //     responsive = responsive.map(obj => Object.assign({}, obj)).sort((key => (a, b) =>
+  //       (a[key] > b[key]) ? 1 : ((b[key] > a[key]) ? -1 : 0))('breakPoint')); // eslint-disable-line
+  //     let updatedCardsToShow = this.state.cardsToShow;
+  //     responsive.forEach(({ breakPoint, cardsToShow }) => {
+  //       if (breakPoint <= window.innerWidth) {
+  //         updatedCardsToShow = cardsToShow;
+  //       }
+  //     });
+  //     const updatedInitialCard = (numberOfChildren - updatedCardsToShow) < this.state.initialCard ? (numberOfChildren - updatedCardsToShow) : this.state.initialCard;
+  //     this.setState({
+  //       cardsToShow: updatedCardsToShow,
+  //       childWidth: 100 / updatedCardsToShow,
+  //       initialCard: updatedInitialCard,
+  //       hideArrows: hideArrowsOnNoSlides && numberOfChildren <= updatedCardsToShow,
+  //     });
+  //   }
+  // }
 
 
-  renderChildren = (children) => {
-    const { childWidth } = this.state;
-    const displayCards = [];
-    Children.forEach(children, (child, index) => {
-      displayCards.push((
-        <CardWrapper key={index} width={childWidth} style={{transitionDuration:'1s', transform: index===this.state.initialCard+1? 'scale(1.11)': 'scale(1)'}}>
-          {child}
-        </CardWrapper>
-      ));
-    });
-    return displayCards;
-  }
-
-  handleLeftArrowClick = (evt) => {
-    const { children } = this.props;
-    const { cardsToShow } = this.state;
-    const childrenCount = children ? children.length : 0;
-    if (evt && evt.preventDefault) { evt.preventDefault(); }
-    let nextInitialCard = this.state.initialCard - 1;
-    if (nextInitialCard < 0) {
-      nextInitialCard = childrenCount - cardsToShow;
-    }
-    this.changeInitialCard(nextInitialCard);
-  }
-
-  handleRightArrowClick = (evt) => {
-    const { children } = this.props;
-    const { cardsToShow } = this.state;
-    const childrenCount = children ? children.length : 0;
-    if (evt && evt.preventDefault) { evt.preventDefault(); }
-    let nextInitialCard = this.state.initialCard + 1;
-    if (childrenCount - cardsToShow < nextInitialCard) {
-      nextInitialCard = 0;
-    }
-    this.changeInitialCard(nextInitialCard);
-  }
+  // renderChildren = (children) => {
+  //   const { childWidth } = this.state;
+  //   const displayCards = [];
+  //   Children.forEach(children, (child, index) => {
+  //     displayCards.push((
+  //       <CardWrapper key={index} width={childWidth} style={{transitionDuration:'1s', transform: index===this.state.initialCard+1? 'scale(1.11)': 'scale(1)'}}>
+  //         {child}
+  //       </CardWrapper>
+  //     ));
+  //   });
+  //   return displayCards;
+  // }
 
 
-  renderLeftArrow = () => {
-    const { LeftArrow, infinite } = this.props;
-    const { initialCard } = this.state;
-    return cloneElement(LeftArrow, {
-      onClick: this.handleLeftArrowClick,
-      disabled: !infinite && !initialCard,
-    });
-  }
+  // handleLeftArrowClick = (evt) => {
+  //   const { children } = this.props;
+  //   const { cardsToShow } = this.state;
+  //   const childrenCount = children ? children.length : 0;
+  //   if (evt && evt.preventDefault) { evt.preventDefault(); }
+  //   let nextInitialCard = this.state.initialCard - 1;
+  //   if (nextInitialCard < 0) {
+  //     nextInitialCard = childrenCount - cardsToShow;
+  //   }
+  //   this.changeInitialCard(nextInitialCard);
+  // }
 
-  renderRightArrow = () => {
-    const { RightArrow, children, infinite } = this.props;
-    const numberOfChildren = children ? children.length || 1 : 0;
-    const { initialCard, cardsToShow } = this.state;
-    return cloneElement(RightArrow, {
-      onClick: this.handleRightArrowClick,
-      disabled: !infinite && (initialCard + cardsToShow === numberOfChildren),
-    });
-  }
+  // handleRightArrowClick = (evt) => {
+  //   const { children } = this.props;
+  //   const { cardsToShow } = this.state;
+  //   const childrenCount = children ? children.length : 0;
+  //   if (evt && evt.preventDefault) { evt.preventDefault(); }
+  //   let nextInitialCard = this.state.initialCard + 1;
+  //   if (childrenCount - cardsToShow < nextInitialCard) {
+  //     nextInitialCard = 0;
+  //   }
+  //   this.changeInitialCard(nextInitialCard);
+  // }
+
+
+  // renderLeftArrow = () => {
+  //   const { LeftArrow, infinite } = this.props;
+  //   const { initialCard } = this.state;
+  //   return cloneElement(LeftArrow, {
+  //     onClick: this.handleLeftArrowClick,
+  //     disabled: !infinite && !initialCard,
+  //   });
+  // }
+
+  // renderRightArrow = () => {
+  //   const { RightArrow, children, infinite } = this.props;
+  //   const numberOfChildren = children ? children.length || 1 : 0;
+  //   const { initialCard, cardsToShow } = this.state;
+  //   return cloneElement(RightArrow, {
+  //     onClick: this.handleRightArrowClick,
+  //     disabled: !infinite && (initialCard + cardsToShow === numberOfChildren),
+  //   });
+  // }
 
 
   render() {

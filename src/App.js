@@ -1,10 +1,10 @@
 import AppContainer from "./components/Container";
 import Card from "./components/Card";
-import Carousel from "./components/carousel";
 import { storeProducts } from "./store/products";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {Select} from "react-slct";
 import {options, responsive} from './utils/constants';
+import Carousel from "./components/functional-carousel";
 
 const App =() => {
   const [selectedValue, setSelectedValue] = useState('');
@@ -17,12 +17,17 @@ const App =() => {
     }));
   };
 
+  useEffect(()=>{ 
+    console.log("changed");
+  }, [selectedValue]);
+
+
   return (
     <AppContainer>
       <div style={{width: '200px', margin: '0 auto'}}>
         <Select placeholder="Select filter" value={selectedValue} searchable onChange={search} options={options} showDots={true} />
       </div>
-      <Carousel responsive={responsive} showArrows={true} cardsToShow={3} showDots={true}>
+      <Carousel responsive={responsive} showArrows={true} numberOfcardsToShow={3} showDots={true}>
         {
           filteredProducts.map((p, index)=>{
             return <Card
